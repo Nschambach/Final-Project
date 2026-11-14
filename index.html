@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Rise of Tommy John</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background-color: #f4f6f8;
+      color: #222;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    header {
+      background-color: #0E3386;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #0E3386;
+    }
+
+    .chart-box {
+      max-width: 750px;
+      margin: 25px auto;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .caption {
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #0E3386;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>The Rising Cost of the Fastball</h1>
+  <p>How Tommy John Surgery Has Changed
+     Professional Baseball Since 2000</p>
+</header>
+
+<main>
+
+<section id="intro">
+  <h2>When Chasing Velocitty Changes Everything</h2>
+
+  <p>
+    Tommy John surgery has become one of the most
+    discussed procedures in professional baseball.
+    What was once considered a career-threatening
+    injury is now an increasingly familiar part
+    of the sport.
+  </p>
+</section>
+
+<section id="rise">
+  <h2>The Rise of Tommy John</h2>
+
+  <p>
+    Using data collected by MLBPlayerAnalys,
+    this graph examines the number of recorded
+    Tommy John surgeries each year between
+    2000 and 2025.
+  </p>
+
+  <div class="chart-box">
+    <canvas id="tjChart"></canvas>
+  </div>
+
+  <p class="caption">
+    Figure 1. Annual recorded Tommy John surgeries
+    from 2000 to 2025.
+    Source: MLBPlayerAnalys Tommy John Surgery List.
+  </p>
+
+  <p>
+    The data shows a substantial increase in
+    recorded Tommy John surgeries over the past
+    25 years. In 2000, there were 29 recorded
+    surgeries, compared with 176 in 2021,
+    the highest year in the dataset.
+    Although the number of surgeries fluctuates
+    from year to year, the overall trend
+    suggests that Tommy John surgery has
+    become increasingly common in
+    professional baseball.
+  </p>
+</section>
+
+<section id="future">
+  <h2>What Does This Mean for Baseball?</h2>
+
+  <p>
+    Ever since the crave for higher velocity fastballs
+    across all baseball leagues, the rate of injury has
+    exponentially increased in all pitchers, especially
+    major and minor leaguers. With the increase in velocity,
+    comes an increase in risk of injury. 
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <p>Baseball Data Journalism Project | 2026</p>
+</footer>
+
+<script>
+const years = [
+  "2000", "2001", "2002", "2003", "2004",
+  "2005", "2006", "2007", "2008", "2009",
+  "2010", "2011", "2012", "2013", "2014",
+  "2015", "2016", "2017", "2018", "2019",
+  "2020", "2021", "2022", "2023", "2024",
+  "2025"
+];
+
+const surgeries = [
+  29, 33, 35, 48, 47,
+  55, 54, 72, 51, 77,
+  80, 80, 116, 112, 156,
+  171, 159, 161, 147, 140,
+  90, 176, 134, 134, 115,
+  82
+];
+
+new Chart(document.getElementById("tjChart"), {
+  type: "line",
+
+  data: {
+    labels: years,
+    datasets: [{
+      label: "Tommy John Surgeries",
+      data: surgeries,
+      borderColor: "#CC3433",
+      backgroundColor: "rgba(204, 52, 51, 0.12)",
+      borderWidth: 3,
+      pointRadius: 4,
+      pointHoverRadius: 7,
+      tension: 0.2,
+      fill: true
+    }]
+  },
+
+  options: {
+    responsive: true,
+
+    interaction: {
+      intersect: false,
+      mode: "index"
+    },
+
+    plugins: {
+      title: {
+        display: true,
+        text: "Tommy John Surgeries by Year (2000-2025)",
+        font: {
+          size: 18
+        },
+        color: "#0E3386"
+      },
+
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return context.parsed.y + " surgeries";
+          }
+        }
+      },
+
+      legend: {
+        display: false
+      }
+    },
+
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Year"
+        },
+        ticks: {
+          maxTicksLimit: 14
+        }
+      },
+
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Number of Surgeries"
+        },
+        ticks: {
+          precision: 0
+        }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
